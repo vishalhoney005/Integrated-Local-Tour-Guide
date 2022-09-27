@@ -8,7 +8,7 @@ import Districts from './DistrictDropdown'
 
 const navigation = [
   { name: 'Wishlist', href: '#', current: false },
-  { name: 'Upload', href: '#', current: false },
+  { name: 'Upload', href: '/upload', current: false },
 ]
 
 function classNames(...classes) {
