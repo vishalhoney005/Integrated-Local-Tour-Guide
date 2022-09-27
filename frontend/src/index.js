@@ -4,12 +4,15 @@ import { BrowserRouter } from "react-router-dom"
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BackendPlacesProvider } from 'context/BackendPlaces'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter >
+		<BackendPlacesProvider>
         <App />
+		</BackendPlacesProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
