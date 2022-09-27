@@ -56,12 +56,13 @@ const placesInfo = [
     {image:"https://res.cloudinary.com/thrillophilia/image/upload/c_fill,f_auto,fl_progressive.strip_profile,g_auto,h_600,q_auto,w_auto/v1/filestore/tyhyy419pw0ghftgs9uedy6pyb56_1550046978_7453270882_117ac0ca1d_k.jpg.jpg",title:"Varkala Beach",description:"Varkala",clickEvent: () => console.log('click')},
 ]
 
-const reversePlacesInfo = placesInfo
+
 
 
 export default function Home() {
 
     const {places} = useContext(BackendPlacesContext)
+    var reversePlacesInfo = placesInfo;
 
     return (
         <>
@@ -74,11 +75,13 @@ export default function Home() {
             </div>
         </div>
 
+
         <div class='m-10 space-y-4'>
             <div class='ml-40 w-1/6 '>
                 <h1 class='text-left text-4xl font-light text-gray-500 '> Recently viewed </h1>
             </div>
             <div class='ml-28 flex w-full'>
+            
                 <ReactCardSlider slides={reversePlacesInfo} />
             </div>
         </div>
@@ -86,3 +89,5 @@ export default function Home() {
         </>
     );
 }
+
+
