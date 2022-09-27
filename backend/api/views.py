@@ -100,3 +100,9 @@ def getplaces(request):
     places = Place.objects.all()
     serializer = PlaceSerializer(places, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def viewplaces(request):
+    places = Place.objects.all()
+    serializer = ViewSerializer(places, many=True)
+    return Response(serializer.data)

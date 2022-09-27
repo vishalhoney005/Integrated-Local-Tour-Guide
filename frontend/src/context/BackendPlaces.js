@@ -16,6 +16,7 @@ export const BackendPlacesProvider = ({children}) => {
         .then((response) => {
             if (response.status == 200) {
                 const data = response.data;
+                console.log(data)
                 setPlaces(data)
             }
         })

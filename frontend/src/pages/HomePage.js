@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import ReactCardSlider from 'react-card-slider-component';
 import BackendPlacesContext from 'context/BackendPlaces';
 import { gridColumnsTotalWidthSelector } from '@material-ui/data-grid';
+import axios from 'axios'
+
 
 const Posters = [
   { title: 'Poster01', imageUrl: '#', link: <Home /> },
@@ -51,17 +53,20 @@ export default function Home() {
 
     const [array, setArray] = useState([])
 
-    useEffect(() => {
-        const tmp = []
-        places.map((place, index) => {
-            tmp.push({
-                image: place.img_url,
-                title: place.name, 
-                description: place.description,
-                clickEvent: null
-            })
+    const viewPlaces = async () => {
+        await axios.post("http://localhost:8000/api/view/place")
+        .then((response) => {
+            if (response.status == 200) {
+                const data = response.data;
+                setArray(data)
+                console.log(data)
+            }
         })
-        setArray(tmp)
+    }
+
+
+    useEffect(() => {
+        viewPlaces()
     }, [])
 
     return (
@@ -72,7 +77,7 @@ export default function Home() {
                 <h1 class='text-left text-4xl font-light text-gray-500 '> Locations </h1>
             </div>
             <div class='ml-28 flex w-full'>
-                <ReactCardSlider slides={places} />
+                <ReactCardSlider slides={array} />
             </div>
         </div>
 
@@ -81,7 +86,7 @@ export default function Home() {
                 <h1 class='text-left text-4xl font-light text-gray-500 '> Recently viewed </h1>
             </div>
             <div class='ml-28 flex w-full'>
-                <ReactCardSlider slides={places} />
+                <ReactCardSlider slides={array} />
             </div>
         </div>
 

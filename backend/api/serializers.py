@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 from .models import *
 from rest_framework.settings import api_settings
@@ -16,3 +17,8 @@ class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
         fields = '__all__'
+
+class ViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Place
+        fields = ('image','title')
