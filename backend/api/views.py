@@ -101,8 +101,44 @@ def getplaces(request):
     serializer = PlaceSerializer(places, many=True)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
 def viewplaces(request):
     places = Place.objects.all()
     serializer = ViewSerializer(places, many=True)
     return Response(serializer.data)
+
+    # // id = models.PositiveBigIntegerField(primary_key=True)
+    # // district = models.CharField(max_length=200)
+    # // city = models.CharField(max_length=200)
+    # // title = models.CharField(max_length=200)
+    # // rating = models.FloatField(default=date.today)
+    # // description = models.CharField(max_length=1000)
+    # // image = models.CharField(max_length=200)
+    # // link = models.CharField(max_length=200)
+
+
+@api_view(['POST'])
+def uploadPlace(request):
+    data = request.data
+    district = data['district']
+    city = data['city']
+    title = data['title']
+    rating = data['rating']
+    description = data['description']
+    image = data['image']
+    link = data['link']
+
+    count = Place.objects.count()
+    Place.objects.create(
+        id=count + 1,
+        district=district,
+        city=city,
+        title=title,
+        rating=rating,
+        description=description,
+        image=image,
+        link=link
+    )
+
+    return Response('Place successfully uploaded')

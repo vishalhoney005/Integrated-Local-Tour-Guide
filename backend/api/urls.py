@@ -6,7 +6,7 @@ urlpatterns = [
     path('api/signup/', views.signup, name='signup'),
     path('api/place/:id', views.place, name='place'),
     path('api/place/all', views.getplaces, name='places'),
-    path('api/view/place', views.viewplaces, name='places')
+    path('api/view/place', views.viewplaces, name='places'),
+    path('api/place/upload', views.uploadPlace, name='places')
 
-    
 ]

@@ -1,18 +1,24 @@
+import BackendPlacesContext from "context/BackendPlaces"
+import { useContext } from "react"
+
 export default function UploadPage() {
+
+  const { uploadPlace } = useContext(BackendPlacesContext)
+
   return (
     <>
-      <div>
+      <div class='w-1/2 mx-auto'>
         <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Upload Place</h3>
-              <p className="mt-1 text-sm text-gray-600">
+          <div className=" bg-blue-100 md:col-span-1">
+            <div className="px-4 sm:px-0 m-8">
+              <h3 className="mb-4 text-xl font-bold leading-6 text-gray-900 ">Upload Place</h3>
+              <p className="mt-1 text-md text-gray-600">
                 This information will be displayed publicly so be careful what you share.
               </p>
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form onSubmit={uploadPlace} action="#" method="POST">
               <div className="shadow sm:overflow-hidden sm:rounded-md">
                 <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
@@ -22,9 +28,17 @@ export default function UploadPage() {
                       </label>
                       <div className="mt-1 flex rounded-md shadow-sm">
                         
+    {/* // id = models.PositiveBigIntegerField(primary_key=True)
+    // district = models.CharField(max_length=200)
+    // city = models.CharField(max_length=200)
+    // title = models.CharField(max_length=200)
+    // rating = models.FloatField(default=date.today)
+    // description = models.CharField(max_length=1000)
+    // image = models.CharField(max_length=200)
+    // link = models.CharField(max_length=200) */}
                         <input
                           type="text"
-                          name="company-website"
+                          name="title"
                           id="company-website"
                           className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           //className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -43,7 +57,7 @@ export default function UploadPage() {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
+                        name="city"
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -60,7 +74,7 @@ export default function UploadPage() {
                       </label>
                       <select
                         id="country"
-                        name="country"
+                        name="district"
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
@@ -91,7 +105,7 @@ export default function UploadPage() {
                     <div className="mt-1">
                       <textarea
                         id="about"
-                        name="about"
+                        name="description"
                         rows={3}
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         //className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -112,7 +126,7 @@ export default function UploadPage() {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
+                        name="rating"
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -127,7 +141,21 @@ export default function UploadPage() {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
+                        name="link"
+                        id="last-name"
+                        autoComplete="family-name"
+                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        //className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        placeholder="https://www.google.com/maps"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                        Image url
+                      </label>
+                      <input
+                        type="text"
+                        name="image"
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -137,7 +165,7 @@ export default function UploadPage() {
                     </div>
 
 
-                  <div>
+                  {/* <div>
                     <label className="block text-sm font-medium text-gray-700">Upload Photo</label>
                     <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                       <div className="space-y-1 text-center">
@@ -169,7 +197,7 @@ export default function UploadPage() {
                         <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                
